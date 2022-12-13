@@ -12,13 +12,23 @@ char find_common_char(std::string str) {
 	return 0;
 }
 
-int priority(std::string pack){
-	int common = (int)find_common_char(pack);
+char find_common_char_3str(std::string str1,
+		std::string str2, std::string str3) {
+
+}
+
+int char_priority(char character) {
+	int common = (int)character;
 	if(common > 96){
 		return common-96;
 	} else {
 		return common-64+26;
 	}
+}
+
+int priority(std::string pack){
+	char common = find_common_char(pack);
+	return char_priority(common)
 }
 
 int main() {
