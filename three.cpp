@@ -14,7 +14,14 @@ char find_common_char(std::string str) {
 
 char find_common_char_3str(std::string str1,
 		std::string str2, std::string str3) {
-
+	for(int i=0;i<str1.length();i++) {
+		for(int j=0;j<str2.length();j++) {
+			for(int k=0;k<str3.length();k++) {
+				if(str1[i] == str2[j] && str2[j] == str3[k]) return str1[i];
+			}
+		}
+	}
+	return 0;
 }
 
 int char_priority(char character) {
@@ -26,19 +33,27 @@ int char_priority(char character) {
 	}
 }
 
-int priority(std::string pack){
-	char common = find_common_char(pack);
-	return char_priority(common)
+int priority(std::string str1,
+		std::string str2, std::string str3){
+	char common = find_common_char_3str(str1, str2, str3);
+	return char_priority(common);
 }
 
 int main() {
 	std::fstream input_file;
-	input_file.open("input3", std::ios::in);
+	input_file.open("inputs/input3.txt", std::ios::in);
 	if(input_file.is_open()) {
 		std::string line;
 		int total_score = 0;
+		int count = 0;
+		std::string str[3];
 		while(getline(input_file, line)) {
-			total_score += priority(line);
+			if(count == 3) {
+				total_score += priority(str[0], str[1], str[2]);
+				count = 0;
+			}
+			str[count] = line;
+			count++;
 		}
 		input_file.close();
 		std::cout << "Total : "<< total_score <<"\n";

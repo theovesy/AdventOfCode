@@ -35,7 +35,7 @@ int score2(int opponent, int player) {
 
 int main() {
 	std::fstream input_file;
-	input_file.open("input2", std::ios::in);
+	input_file.open("inputs/input2.txt", std::ios::in);
 	if(input_file.is_open()) {
 		std::string line;
 		int total_score = 0;
